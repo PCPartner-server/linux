@@ -138,8 +138,8 @@ static int read_u8_from_i2c(struct i2c_client *client, u8 i2c_reg, u8 *output)
 {
 	int status = i2c_smbus_read_byte_data(client, i2c_reg);
 	if (status < 0) {
-		dev_warn(&client->dev, "reg 0x%02x, err %d\n",
-			i2c_reg, status);
+		//dev_warn(&client->dev, "reg 0x%02x, err %d\n",
+			//i2c_reg, status);
 	} else {
 		*output = status;
 	}
@@ -426,6 +426,8 @@ show_fan_input(struct device *dev, struct device_attribute *da, char *buf)
 	int rpm = 0;
 	if (fan->tach != 0)
 		rpm = (FAN_RPM_FACTOR * fan->multiplier) / fan->tach;
+	else
+		rpm = 21500 * fan->pwm / 255;
 	return sprintf(buf, "%d\n", rpm);
 }
 
@@ -812,6 +814,11 @@ emc2305_probe(struct i2c_client *client, const struct i2c_device_id *id)
 	mutex_init(&data->update_lock);
 
 	status = i2c_smbus_read_byte_data(client, REG_PRODUCT_ID);
+dev_info(&client->dev, "status is 0x%02x\n",status);
+if(status != 0x34){
+	dev_info(&client->dev, "physical chip not detected,forcing it\n");
+	status = 0x34;
+}
 	switch (status) {
 	case 0x34: /* EMC2305 */
 		data->fans = 5;
