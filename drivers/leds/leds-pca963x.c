@@ -52,6 +52,7 @@ enum pca963x_type {
 	pca9633,
 	pca9634,
 	pca9635,
+	pca9626,
 };
 
 struct pca963x_chipdef {
@@ -81,6 +82,12 @@ static struct pca963x_chipdef pca963x_chipdefs[] = {
 		.ledout_base	= 0x14,
 		.n_leds		= 16,
 	},
+	[pca9626] = {
+		.grppwm		= 0x1a,
+		.grpfreq	= 0x1b,
+		.ledout_base	= 0x1d,
+		.n_leds		= 24,
+	},
 };
 
 /* Total blink period in milliseconds */
@@ -92,6 +99,7 @@ static const struct i2c_device_id pca963x_id[] = {
 	{ "pca9633", pca9633 },
 	{ "pca9634", pca9634 },
 	{ "pca9635", pca9635 },
+	{ "pca9626", pca9626 },
 	{ }
 };
 MODULE_DEVICE_TABLE(i2c, pca963x_id);
@@ -350,6 +358,7 @@ static const struct of_device_id of_pca963x_match[] = {
 	{ .compatible = "nxp,pca9633", },
 	{ .compatible = "nxp,pca9634", },
 	{ .compatible = "nxp,pca9635", },
+	{ .compatible = "nxp,pca9626", },
 	{},
 };
 MODULE_DEVICE_TABLE(of, of_pca963x_match);
