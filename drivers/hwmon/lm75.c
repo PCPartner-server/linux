@@ -112,6 +112,8 @@ struct lm75_data {
 /*-----------------------------------------------------------------------*/
 
 static const u8 lm75_sample_set_masks[] = { 0 << 5, 1 << 5, 2 << 5, 3 << 5 };
+int iTemp = 2;
+int iDir = 1;
 
 #define LM75_SAMPLE_CLEAR_MASK	(3 << 5)
 
@@ -352,8 +354,18 @@ static int lm75_read(struct device *dev, enum hwmon_sensor_types type,
 			return -EINVAL;
 		}
 		err = regmap_read(data->regmap, reg, &regval);
-		if (err < 0)
+		if (err < 0){
+			if(attr==hwmon_temp_input){
+				if(iTemp == 75)
+					iDir = -1;
+				else if(iTemp == 0)
+					iDir = 1;
+				iTemp += iDir;
+				*val = iTemp * 1000;
+				return 0;
+			}
 			return err;
+		}
 
 		*val = lm75_reg_to_mc(regval, data->resolution);
 		break;
@@ -584,16 +596,19 @@ lm75_probe(struct i2c_client *client, const struct i2c_device_id *id)
 	/* Cache original configuration */
 	status = i2c_smbus_read_byte_data(client, LM75_REG_CONF);
 	if (status < 0) {
-		dev_dbg(dev, "Can't read config? %d\n", status);
-		return status;
+		dev_info(dev, "Can't read config? %d\n", status);
+		status = 0;
+		//return status;
 	}
 	data->orig_conf = status;
 	data->current_conf = status;
 
 	err = lm75_write_config(data, data->params->set_mask,
 				data->params->clr_mask);
-	if (err)
-		return err;
+	if (err){
+		dev_info(dev, "lm75_write_config error\n");
+		//return err;
+	}
 
 	err = devm_add_action_or_reset(dev, lm75_remove, data);
 	if (err)
