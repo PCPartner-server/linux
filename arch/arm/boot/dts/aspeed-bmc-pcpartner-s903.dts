@@ -83,7 +83,7 @@
 
 	gpio-keys {
 		compatible = "gpio-keys";
-		autorepeat;
+		#autorepeat;
 
 		psu0_presence {
 			label = "psu0_presence";
