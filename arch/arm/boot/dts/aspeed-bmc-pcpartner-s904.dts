@@ -139,6 +139,12 @@
 			linux,code = <ASPEED_GPIO(M, 5)>;
 		};
 
+		irq_smi_active {
+			label = "irq_smi_active";
+			gpios = <&gpio ASPEED_GPIO(AA, 6) GPIO_ACTIVE_LOW>;
+			linux,code = <ASPEED_GPIO(AA, 6)>;
+		};
+
 		nmi-button {
 			label = "nmi-button";
 			gpios = <&gpio ASPEED_GPIO(AB, 1) GPIO_ACTIVE_LOW>;
