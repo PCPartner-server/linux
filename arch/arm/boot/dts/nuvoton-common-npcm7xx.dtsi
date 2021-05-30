@@ -83,6 +83,12 @@
 			reg = <0x801000 0x6C>;
 		};
 
+		fuse:fuse@18a000 {
+			compatible = "nuvoton,npcm750-fuse", "syscon",
+				"simple-mfd";
+			reg = <0x18a000 0x1000>;
+		};
+
 		scu: scu@3fe000 {
 			compatible = "arm,cortex-a9-scu";
 			reg = <0x3fe000 0x1000>;
@@ -361,8 +367,7 @@
 			};
 
 			peci: peci-bus@100000 {
-				compatible = "nuvoton,npcm750-peci";
-				reg = <0x100000 0x200>;
+				compatible = "simple-bus";
 				#address-cells = <1>;
 				#size-cells = <1>;
 				ranges = <0x0 0x100000 0x200>;
@@ -419,6 +424,7 @@
 				reg = <0x801C 0x4>;
 				status = "disabled";
 				clocks = <&clk NPCM7XX_CLK_TIMER>;
+				syscon = <&gcr>;
 			};
 
 			watchdog1: watchdog@901C {
@@ -427,6 +433,7 @@
 				reg = <0x901C 0x4>;
 				status = "disabled";
 				clocks = <&clk NPCM7XX_CLK_TIMER>;
+				syscon = <&gcr>;
 			};
 
 			watchdog2: watchdog@a01C {
@@ -435,6 +442,7 @@
 				reg = <0xa01C 0x4>;
 				status = "disabled";
 				clocks = <&clk NPCM7XX_CLK_TIMER>;
+				syscon = <&gcr>;
 			};
 
 			serial0: serial@1000 {
@@ -487,6 +495,7 @@
 				interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>;
 				clocks = <&clk NPCM7XX_CLK_ADC>;
 				resets = <&rstc NPCM7XX_RESET_IPSRST1 NPCM7XX_RESET_ADC>;
+				syscon = <&fuse>;
 				status = "disabled";
 			};
 
