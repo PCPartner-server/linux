@@ -278,75 +278,99 @@
 		#size-cells = <0>;
 		reg = <0x4>;
 		led_fan1@0 {
+			label = "led_fan1";
 			reg = <0>;
 		};
 		led_fan2@1 {
+			label = "led_fan2";
 			reg = <1>;
 		};
 		led_fan3@2 {
+			label = "led_fan3";
 			reg = <2>;
 		};
 		led_fan4@3 {
+			label = "led_fan4";
 			reg = <3>;
 		};
 		led_fan5@4 {
+			label = "led_fan5";
 			reg = <4>;
 		};
 		led_fan6@5 {
+			label = "led_fan6";
 			reg = <5>;
 		};
 		led_fan7@6 {
+			label = "led_fan7";
 			reg = <6>;
 		};
 		led_fan8@7 {
+			label = "led_fan8";
 			reg = <7>;
 		};
 		led_fan9@8 {
+			label = "led_fan9";
 			reg = <8>;
 		};
 		led_fan10@9 {
+			label = "led_fan10";
 			reg = <9>;
 		};
 		led_fan11@10 {
+			label = "led_fan11";
 			reg = <10>;
 		};
 		led_fan12@11 {
+			label = "led_fan12";
 			reg = <11>;
 		};
 		led_fan13@12 {
+			label = "led_fan13";
 			reg = <12>;
 		};
 		led_fan14@13 {
+			label = "led_fan14";
 			reg = <13>;
 		};
 		led_fan15@14 {
+			label = "led_fan15";
 			reg = <14>;
 		};
 		led_fan16@15 {
+			label = "led_fan16";
 			reg = <15>;
 		};
 		led_fan17@16 {
+			label = "led_fan17";
 			reg = <16>;
 		};
 		led_fan18@17 {
+			label = "led_fan18";
 			reg = <17>;
 		};
 		led_fan19@18 {
+			label = "led_fan19";
 			reg = <18>;
 		};
 		led_fan20@19 {
+			label = "led_fan20";
 			reg = <19>;
 		};
 		led_fan21@20 {
+			label = "led_fan21";
 			reg = <20>;
 		};
 		led_fan22@21 {
+			label = "led_fan22";
 			reg = <21>;
 		};
 		led_fan23@22 {
+			label = "led_fan23";
 			reg = <22>;
 		};
 		led_fan24@23 {
+			label = "led_fan24";
 			reg = <23>;
 		};
 	};
