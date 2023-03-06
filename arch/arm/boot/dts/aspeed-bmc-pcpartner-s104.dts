@@ -412,7 +412,7 @@
 			compatible = "intel,peci-dimmtemp";
 		};
 	};
-	intel-peci@31 {
+/* 	intel-peci@31 {
 		compatible = "intel,peci-client";
 		reg = <0x31>;
 		peci-cputemp.1 {
@@ -421,7 +421,7 @@
 		peci-dimmtemp.1 {
 			compatible = "intel,peci-dimmtemp";
 		};
-	};
+	}; */
 };
 
 &lpc_ctrl {
