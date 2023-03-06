@@ -72,7 +72,7 @@ static int peci_client_get_cpu_gen_info(struct peci_client_manager *priv)
 			   FIELD_GET(CPU_ID_MODEL_MASK, cpu_id)) |
 		FIELD_PREP(UPPER_NIBBLE_MASK,
 			   FIELD_GET(CPU_ID_EXT_MODEL_MASK, cpu_id));
-
+dev_info(dev,"family is %02x,model is %02x",family,model);
 	for (i = 0; i < ARRAY_SIZE(cpu_gen_info_table); i++) {
 		const struct cpu_gen_info *cpu_info = &cpu_gen_info_table[i];
 
@@ -80,6 +80,7 @@ static int peci_client_get_cpu_gen_info(struct peci_client_manager *priv)
 			priv->gen_info = cpu_info;
 			break;
 		}
+		priv->gen_info = cpu_info;
 	}
 
 	if (!priv->gen_info) {

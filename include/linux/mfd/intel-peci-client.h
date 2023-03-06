@@ -18,6 +18,7 @@
 #define INTEL_FAM6_BROADWELL_X		0x4F
 #define INTEL_FAM6_SKYLAKE_X		0x55
 #define INTEL_FAM6_SKYLAKE_XD		0x56
+#define INTEL_FAM6_ICELAKE			0x6C
 #endif
 
 #define INTEL_FAM6             6 /* P6 (Pentium Pro and later) */
